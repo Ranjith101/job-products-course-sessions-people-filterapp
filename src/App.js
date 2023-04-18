@@ -9,6 +9,7 @@ import useTheme from './components/Theme/useTheme';
 import CourseCardList from './components/CourseCard.js/CourseCardList';
 import PeopleList from './components/People/PeopleList';
 import ProductList from './components/ProductList/ProductList';
+import SessionList from './components/SessionList/SessionList';
 // import CourseCardList from './components/JobCardList/CourseCard';
 
 const TabContainer = styled.div`
@@ -86,6 +87,7 @@ const App = () => {
         {activeTab === 'course' ? <CourseCardList/>: null}
         {activeTab === 'people' ? <PeopleList/>: null}
         {activeTab === 'products' ? <ProductList/>: null}
+        {activeTab === 'sessions' ? <SessionList/>: null}
       </ContextProvider>
     </ThemeProvider>
   );
