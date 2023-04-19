@@ -219,7 +219,7 @@ image: 'https://via.placeholder.com/150x150',
   // Add more sessions here
 ];
 
-const SessionList = () => {
+const SessionList = ({ searchKeyword }) => {
     const [selectedSpeaker, setSelectedSpeaker] = useState(null);
   
     const handleViewDetails = (speaker) => {
@@ -229,10 +229,13 @@ const SessionList = () => {
     const handleClosePopup = () => {
       setSelectedSpeaker(null);
     };
+    const filteredSessions = sessions.filter((session) =>
+    session.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
     return (
         <>
           <SessionListContainer>
-            {sessions.map((session) => (
+            {filteredSessions.map((session) => (
               <SessionCard key={session.id}>
                 <SessionImage src={session.image} alt={session.title} />
                 <SessionInfo>

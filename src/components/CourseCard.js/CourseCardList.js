@@ -70,7 +70,7 @@ const courses = [
     // Add more courses here...
   ];
 
-const CourseCardList = () => {
+const CourseCardList = ({ searchKeyword }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterLevel, setFilterLevel] = useState('');
   
@@ -83,7 +83,7 @@ const CourseCardList = () => {
       };
     
       const filteredCourses = courses.filter((course) => {
-        const titleMatch = course.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const titleMatch = course.title.toLowerCase().includes(searchKeyword.toLowerCase());
         const levelMatch = filterLevel === '' || course.level === filterLevel;
         return titleMatch && levelMatch;
       });

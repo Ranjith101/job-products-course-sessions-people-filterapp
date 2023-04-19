@@ -145,52 +145,6 @@ const PopupCloseButton = styled.button`
   cursor: pointer;
 `;
 
-// const products = [
-//   {
-//     id: 1,
-//     name: 'Apple',
-//     image: 'https://5.imimg.com/data5/WA/NV/LI/SELLER-52971039/apple-indian-500x500.jpg',
-//     code: 'P001',
-//     price: 10.99,
-//     rating: 3.2,
-//   },
-//   {
-//     id: 2,
-//     name: 'Mangoes',
-//     image: 'https://www.sahajaaharam.com/files/Mango%20-%20Alphonzo.jpg',
-//     code: 'P002',
-//     price: 19.99,
-//     rating: 5,
-//   },
-//   {
-//     id: 3,
-//     name: 'Kashmir Apple',
-//     image: 'https://5.imimg.com/data5/WA/NV/LI/SELLER-52971039/apple-indian-500x500.jpg',
-//     code: 'P001',
-//     price: 10.99,
-//     rating: 4.5,
-//   },
-//   {
-//     id: 4,
-//     name: 'Salem Mangoes',
-//     image: 'https://www.sahajaaharam.com/files/Mango%20-%20Alphonzo.jpg',
-//     code: 'P002',
-//     price: 19.99,
-//     rating: 3.8,
-//   },
-//     {
-//     id: 4,
-//     name: 'Salem Mangoes',
-//     image: 'https://www.sahajaaharam.com/files/Mango%20-%20Alphonzo.jpg',
-//     code: 'P002',
-//     price: 19.99,
-//     rating: 3.8,
-//   },
-  
-//   // Add more products here...
-// ];
-
-
 const products = [
     {
       id: 1,
@@ -329,7 +283,7 @@ const products = [
     ];
     
 
-const ProductList = () => {
+const ProductList = ( { searchKeyword }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -355,7 +309,7 @@ const ProductList = () => {
   };
 
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name.toLowerCase().includes(searchTerm.toLowerCase() || searchKeyword.toLowerCase() )
   );
 
   const sortedProducts = sortOption

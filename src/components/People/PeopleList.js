@@ -83,7 +83,7 @@ const data = [
   // Add more data here...
 ];
 
-const PeopleList = () => {
+const PeopleList = ( { searchKeyword } ) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDirection, setSortDirection] = useState('asc');
@@ -103,7 +103,7 @@ const PeopleList = () => {
     
       const filteredData = data.filter((row) =>
         Object.values(row).some((value) =>
-          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+          value.toString().toLowerCase().includes(searchTerm.toLowerCase() || searchKeyword.toLowerCase())
         )
       );
     

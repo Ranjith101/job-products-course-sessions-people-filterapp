@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { DecoImage } from './components';
-import useTheme from './components/Theme/useTheme';
 import CourseCardList from './components/CourseCard.js/CourseCardList';
 import PeopleList from './components/People/PeopleList';
 import ProductList from './components/ProductList/ProductList';
@@ -57,10 +55,9 @@ const DropdownItem = styled.li`
 `;
 
 const App = () => {
-  const [theme, toggleTheme] = useTheme();
   const [activeDropdown, setActiveDropdown] = useState('Courses');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [searchKeyword, setSearchKeyword] = useState('');
   const handleDropdownClick = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -72,7 +69,12 @@ const App = () => {
 
   return (
     <>
-
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchKeyword}
+        onChange={(e) => setSearchKeyword(e.target.value)}
+      />
       <DropdownContainer>
         <DropdownButton onClick={handleDropdownClick} active={dropdownOpen}>
           {activeDropdown}
@@ -96,11 +98,11 @@ const App = () => {
         </DropdownList>
       </DropdownContainer>
 
-      {activeDropdown === 'Jobs' ? <JobList /> : null}
-      {activeDropdown === 'Courses' ? <CourseCardList /> : null}
-      {activeDropdown === 'People' ? <PeopleList /> : null}
-      {activeDropdown === 'Products' ? <ProductList /> : null}
-      {activeDropdown === 'Sessions' ? <SessionList /> : null}
+      {activeDropdown === 'Jobs' ? <JobList searchKeyword={searchKeyword}/> : null}
+      {activeDropdown === 'Courses' ? <CourseCardList searchKeyword={searchKeyword} /> : null}
+      {activeDropdown === 'People' ? <PeopleList searchKeyword={searchKeyword} /> : null}
+      {activeDropdown === 'Products' ? <ProductList searchKeyword={searchKeyword} /> : null}
+      {activeDropdown === 'Sessions' ? <SessionList searchKeyword={searchKeyword}/> : null}
       {/* </ContextProvider> */}
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -101,7 +102,6 @@ const CloseButton = styled.button`
 `;
 
 const CourseCard = ({ course }) => {
-    console.log(course)
   const {
     title,
     description,

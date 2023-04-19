@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const JobList = () => {
+const JobList = ({ searchKeyword }) => {
 //   const Navigate = useNavigate();
   const classes  = useStyles();  
   const [jobs, setJobs] = useState([
@@ -220,11 +220,11 @@ const JobList = () => {
   // Function to filter jobs based on search query
   const filterJobs = (query) => {
     return jobs.filter((job) => {
-      const title = job.title.toLowerCase();
-      const company = job.company.toLowerCase();
-      const description = job.description.toLowerCase();
-      const search = query.toLowerCase();
-      return title.includes(search) || company.includes(search) || description.includes(search);
+      const title = job.title.toLowerCase().includes(searchKeyword.toLowerCase());
+      const company = job.company.toLowerCase().includes(searchKeyword.toLowerCase());
+      const description = job.description.toLowerCase().includes(searchKeyword.toLowerCase());
+    //   const search = query.toLowerCase().includes(searchKeyword.toLowerCase());
+      return title || company || description
     });
   };
 
