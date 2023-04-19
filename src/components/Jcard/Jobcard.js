@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 10,
         border: "1px solid #ccc",
         borderRadius: 5,
-        width: "calc(33.33% - 10px)", // set the width to 33.33% minus the grid gap
+        width: "calc(100% - 10px)", // set the width to 33.33% minus the grid gap
         padding: 10,
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         transition: "box-shadow 0.3s ease",

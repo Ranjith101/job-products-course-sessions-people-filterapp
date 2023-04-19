@@ -6,11 +6,25 @@ import ProductList from './components/ProductList/ProductList';
 import SessionList from './components/SessionList/SessionList';
 import JobList from './components/Jcard/Jobcard';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Input = styled.input`
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 400px;
+`;
+
 const DropdownContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  z-index: 99999;
+  margin-bottom: 20px;
   position: relative;
 `;
 
@@ -33,15 +47,14 @@ const DropdownButton = styled.button`
 
 const DropdownList = styled.ul`
   position: absolute;
-  top: 50px;
-  left: 46rem;
+  top: 100%;
+  left: 0;
   width: 150px;
   background-color: ${({ theme }) => theme.secondaryColor};
   border-radius: 0 0 10px 10px;
   padding: 5px 0;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   display: ${({ open }) => (open ? 'block' : 'none')};
-  background:aqua
 `;
 
 const DropdownItem = styled.li`
@@ -58,6 +71,7 @@ const App = () => {
   const [activeDropdown, setActiveDropdown] = useState('Courses');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
+
   const handleDropdownClick = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -68,8 +82,8 @@ const App = () => {
   };
 
   return (
-    <>
-      <input
+    <Container>
+      <Input
         type="text"
         placeholder="Search..."
         value={searchKeyword}
@@ -103,8 +117,7 @@ const App = () => {
       {activeDropdown === 'People' ? <PeopleList searchKeyword={searchKeyword} /> : null}
       {activeDropdown === 'Products' ? <ProductList searchKeyword={searchKeyword} /> : null}
       {activeDropdown === 'Sessions' ? <SessionList searchKeyword={searchKeyword}/> : null}
-      {/* </ContextProvider> */}
-    </>
+    </Container>
   );
 };
 
