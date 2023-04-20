@@ -84,13 +84,14 @@ const CourseCardList = ({ searchKeyword }) => {
     
       const filteredCourses = courses.filter((course) => {
         const titleMatch = course.title.toLowerCase().includes(searchKeyword.toLowerCase());
+        const location = course.location.toLowerCase().includes(searchKeyword.toLowerCase());
         const levelMatch = filterLevel === '' || course.level === filterLevel;
-        return titleMatch && levelMatch;
+        return (titleMatch || location) && levelMatch ;
       });
   return (
     <>
       <FilterContainer>
-        <FilterInput
+        {/* <FilterInput
           type="text"
           placeholder="Search courses..."
           value={searchTerm}
@@ -101,7 +102,7 @@ const CourseCardList = ({ searchKeyword }) => {
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
           <option value="Advanced">Advanced</option>
-        </FilterSelect>
+        </FilterSelect> */}
       </FilterContainer>
       <CardListContainer>
         {filteredCourses.map((course, index) => (

@@ -63,7 +63,6 @@ const PopupContainer = styled.div`
 
 const PopupContent = styled.div`
   background: aqua;
-  background-color: ${({ theme }) => theme.cardBackground};
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   padding: 20px;

@@ -123,7 +123,7 @@ const PeopleList = ( { searchKeyword } ) => {
         return (
             <>
               <SearchContainer>
-                <SearchInput
+                {/* <SearchInput
                   type="text"
                   placeholder="Search..."
                   value={searchTerm}
@@ -138,7 +138,7 @@ const PeopleList = ( { searchKeyword } ) => {
                   <option value="company">Company</option>
                   <option value="city">City</option>
                   <option value="country">Country</option>
-                </Select>
+                </Select> */}
               </SearchContainer>
               <TableContainer>
                 <Table>

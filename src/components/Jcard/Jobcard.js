@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 const JobList = ({ searchKeyword }) => {
 //   const Navigate = useNavigate();
   const classes  = useStyles();  
-  const [jobs, setJobs] = useState([
+  const [jobs] = useState([
     {
       id: 1,
       title: "Frontend Developer",
@@ -223,8 +223,9 @@ const JobList = ({ searchKeyword }) => {
       const title = job.title.toLowerCase().includes(searchKeyword.toLowerCase());
       const company = job.company.toLowerCase().includes(searchKeyword.toLowerCase());
       const description = job.description.toLowerCase().includes(searchKeyword.toLowerCase());
+      const experience = job.experience.toString().toLowerCase().includes(searchKeyword.toLowerCase())
     //   const search = query.toLowerCase().includes(searchKeyword.toLowerCase());
-      return title || company || description
+      return title || company || description || experience
     });
   };
 
