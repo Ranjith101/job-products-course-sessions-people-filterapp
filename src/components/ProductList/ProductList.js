@@ -332,7 +332,7 @@ const ProductList = ( { searchKeyword }) => {
     return (
         <>
         <SearchContainer>
-          <SearchInput
+          {/* <SearchInput
             type="text"
             placeholder="Search..."
             value={searchTerm}
@@ -342,7 +342,7 @@ const ProductList = ( { searchKeyword }) => {
             <option value="">Sort by...</option>
             <option value="price">Price</option>
             <option value="rating">Rating</option>
-          </Select>
+          </Select> */}
         </SearchContainer>
         <ProductListContainer>
           {rows.map((row, index) => (

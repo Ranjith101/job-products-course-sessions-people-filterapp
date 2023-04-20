@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CourseCardList from './components/CourseCard.js/CourseCardList';
 import PeopleList from './components/People/PeopleList';
 import ProductList from './components/ProductList/ProductList';
 import SessionList from './components/SessionList/SessionList';
 import JobList from './components/Jcard/Jobcard';
+import E_CardList from './components/ExhibitorList/ExhbitorList';
 
 const Container = styled.div`
   display: flex;
@@ -21,14 +22,17 @@ const Input = styled.input`
   width: 400px;
 `;
 
-const DropdownContainer = styled.div`
+const RadioContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  position: relative;
 `;
 
-const DropdownButton = styled.button`
+const RadioButton = styled.input`
+  // display: none;
+`;
+
+const RadioButtonLabel = styled.label`
   background-color: ${({ active, theme }) =>
     active ? theme.primaryColor : theme.secondaryColor};
   color: ${({ active, theme }) =>
@@ -39,28 +43,7 @@ const DropdownButton = styled.button`
   border-radius: 10px;
   padding: 10px 20px;
   cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.primaryColor};
-    color: ${({ theme }) => theme.secondaryColor};
-  }
-`;
-
-const DropdownList = styled.ul`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 150px;
-  background-color: ${({ theme }) => theme.secondaryColor};
-  border-radius: 0 0 10px 10px;
-  padding: 5px 0;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  display: ${({ open }) => (open ? 'block' : 'none')};
-`;
-
-const DropdownItem = styled.li`
-  list-style: none;
-  padding: 5px 20px;
-  cursor: pointer;
+  margin-right: 10px;
   &:hover {
     background-color: ${({ theme }) => theme.primaryColor};
     color: ${({ theme }) => theme.secondaryColor};
@@ -68,17 +51,11 @@ const DropdownItem = styled.li`
 `;
 
 const App = () => {
-  const [activeDropdown, setActiveDropdown] = useState('Courses');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeRadio, setActiveRadio] = useState('Courses');
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const handleDropdownClick = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const handleDropdownItemSelect = (item) => {
-    setActiveDropdown(item);
-    setDropdownOpen(false);
+  const handleRadioChange = (event) => {
+    setActiveRadio(event.target.value);
   };
 
   return (
@@ -89,36 +66,81 @@ const App = () => {
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
       />
-      <DropdownContainer>
-        <DropdownButton onClick={handleDropdownClick} active={dropdownOpen}>
-          {activeDropdown}
-        </DropdownButton>
-        <DropdownList open={dropdownOpen}>
-          <DropdownItem onClick={() => handleDropdownItemSelect('Courses')}>
-            Courses
-          </DropdownItem>
-          <DropdownItem onClick={() => handleDropdownItemSelect('Jobs')}>
-            Jobs
-          </DropdownItem>
-          <DropdownItem onClick={() => handleDropdownItemSelect('Products')}>
-            Products
-          </DropdownItem>
-          <DropdownItem onClick={() => handleDropdownItemSelect('Sessions')}>
-            Sessions
-          </DropdownItem>
-          <DropdownItem onClick={() => handleDropdownItemSelect('People')}>
-            People
-          </DropdownItem>
-        </DropdownList>
-      </DropdownContainer>
+      <RadioContainer>
+        <RadioButton
+          type="radio"
+          id="courses"
+          name="radio"
+          value="Courses"
+          checked={activeRadio === 'Courses'}
+          onChange={handleRadioChange}
+        />
 
-      {activeDropdown === 'Jobs' ? <JobList searchKeyword={searchKeyword}/> : null}
-      {activeDropdown === 'Courses' ? <CourseCardList searchKeyword={searchKeyword} /> : null}
-      {activeDropdown === 'People' ? <PeopleList searchKeyword={searchKeyword} /> : null}
-      {activeDropdown === 'Products' ? <ProductList searchKeyword={searchKeyword} /> : null}
-      {activeDropdown === 'Sessions' ? <SessionList searchKeyword={searchKeyword}/> : null}
-    </Container>
-  );
-};
-
-export default App;
+        <RadioButtonLabel htmlFor="courses" active={activeRadio === 'Courses'}>
+          Courses
+        </RadioButtonLabel>
+        <RadioButton
+          type="radio"
+          id="jobs"
+          name="radio"
+          value="Jobs"
+          checked={activeRadio === 'Jobs'}
+          onChange={handleRadioChange}
+        />
+        <RadioButtonLabel htmlFor="jobs" active={activeRadio === 'Jobs'}>
+          Jobs
+        </RadioButtonLabel>
+        <RadioButton
+          type="radio"
+          id="products"
+          name="radio"
+          value="Products"
+          checked={activeRadio === 'Products'}
+          onChange={handleRadioChange}
+        />
+        <RadioButtonLabel htmlFor="products" active={activeRadio === 'Products'}>
+          Products
+        </RadioButtonLabel>
+        <RadioButton
+          type="radio"
+          id="sessions"
+          name="radio"
+          value="Sessions"
+          checked={activeRadio === 'Sessions'}
+          onChange={handleRadioChange}
+        />
+        <RadioButtonLabel htmlFor="sessions" active={activeRadio === 'Sessions'}>
+          Sessions
+        </RadioButtonLabel>
+        <RadioButton
+          type="radio"
+          id="people"
+          name="radio"
+          value="People"
+          checked={activeRadio === 'People'}
+          onChange={handleRadioChange}
+        />
+         <RadioButtonLabel htmlFor="people" active={activeRadio === 'People'}>
+          People
+        </RadioButtonLabel>
+        <RadioButton
+          type="radio"
+          id="exhibitors"
+          name="radio"
+          value="Exhibitors"
+          checked={activeRadio === 'Exhibitors'}
+          onChange={handleRadioChange}
+        />
+         <RadioButtonLabel htmlFor="exhibitors" active={activeRadio === 'Exhibitors'}>
+         Exhibitors
+        </RadioButtonLabel>
+        </RadioContainer>
+        {activeRadio === 'Courses' ? <CourseCardList searchKeyword={searchKeyword} /> : null}
+      {activeRadio === 'Jobs' ? <JobList searchKeyword={searchKeyword} /> : null}
+      {activeRadio === 'Products' ? <ProductList searchKeyword={searchKeyword} /> : null}
+      {activeRadio === 'Sessions' ? <SessionList searchKeyword={searchKeyword} /> : null}
+      {activeRadio === 'People' ? <PeopleList searchKeyword={searchKeyword} /> : null}
+      {activeRadio === 'Exhibitors' ? <E_CardList searchKeyword={searchKeyword} /> : null}
+</Container>
+)}
+  export default App;

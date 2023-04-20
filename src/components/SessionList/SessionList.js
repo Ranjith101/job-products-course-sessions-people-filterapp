@@ -89,9 +89,12 @@ const ViewDetailsButton = styled.button
   padding: 10px;
   border: none;
   border-radius: 10px;
-  background-color: #fff;
+  // background-color: #fff;
   color: ${({ theme }) => theme.primaryColor};
-  cursor: pointer;`
+  cursor: pointer;
+  margin: 0 9px;
+  `
+  
 ;
 
 const PopupContainer = styled.div
